@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 2: Know Your EMS World</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+        }
+        
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .slide {
+            display: none;
+            padding: 40px;
+            text-align: center;
+            height: calc(100vh - 80px);
+            box-sizing: border-box;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .slide.active {
+            display: flex;
+        }
+        
+        .slide h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            color: #FFD700;
+        }
+        
+        .slide h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #87CEEB;
+        }
+        
+        .slide h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #90EE90;
+        }
+        
+        .slide p, .slide li {
+            font-size: 1.4em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .slide ul {
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .objective-box {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px auto;
+            max-width: 900px;
+            border: 2px solid #FFD700;
+        }
+        
+        .station-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 20px auto;
+        }
+        
+        .station-card {
+            background: rgba(255,255,255,0.15);
+            border-radius: 10px;
+            padding: 20px;
+            border: 2px solid #87CEEB;
+        }
+        
+        .station-card h4 {
+            color: #FFD700;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        
+        .timer-display {
+            font-size: 4em;
+            color: #FF6B6B;
+            font-weight: bold;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+        }
+        
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            max-width: 1000px;
+            margin: 20px auto;
+        }
+        
+        .vocab-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 15px;
+            border-left: 4px solid #90EE90;
+        }
+        
+        .vocab-term {
+            font-weight: bold;
+            color: #FFD700;
+            font-size: 1.2em;
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .nav-btn {
+            background: #FFD700;
+            color: #1e3c72;
+            border: none;
+            padding: 15px 25px;
+            margin: 5px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background: #FFA500;
+            transform: translateY(-2px);
+        }
+        
+        .slide-counter {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.5);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1.1em;
+        }
+        
+        .engage-icon {
+            font-size: 5em;
+            margin: 20px 0;
+        }
+        
+        .highlight {
+            background: rgba(255,215,0,0.3);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <div class="slide-counter">
+            <span id="currentSlide">1</span> / <span id="totalSlides">15</span>
+        </div>
+        
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="engage-icon">🚑</div>
+            <h1>Day 2: Know Your EMS World</h1>
+            <p style="font-size: 1.8em;">Understanding the EMS System & Your Future Career Path</p>
+            <p style="font-size: 1.3em;">EMT Training - Week 1</p>
+        </div>
+        
+        <!-- Slide 2: Learning Objectives -->
+        <div class="slide">
+            <h2>🎯 Today's Mission</h2>
+            <div class="objective-box">
+                <p><strong>You will identify work-based learning opportunities and explore EMS career pathways by researching organizations and creating presentations, demonstrating understanding through accurate information sharing and career planning.</strong></p>
+            </div>
+            <h3>Success Looks Like:</h3>
+            <ul>
+                <li>Understanding how different EMS organizations work together</li>
+                <li>Mapping your personal career pathway from EMT to advanced roles</li>
+                <li>Identifying education and certification requirements</li>
+                <li>Connecting yesterday's EMT identity to the professional system</li>
+            </ul>
+        </div>
+        
+        <!-- Slide 3: Engage Activity -->
+        <div class="slide">
+            <h2>🦸‍♀️ EMS Hero Spotlight</h2>
+            <div class="engage-icon">📺</div>
+            <h3>Watch & Observe</h3>
+            <p>As we watch this local EMS professional at work, pay attention to:</p>
+            <ul>
+                <li><span class="highlight">How do they work with their team?</span></li>
+                <li><span class="highlight">What different roles do you notice?</span></li>
+                <li><span class="highlight">What questions does this raise about EMS careers?</span></li>
+                <li><span class="highlight">How does this connect to your EMT identity from yesterday?</span></li>
+            </ul>
+        </div>
+        
+        <!-- Slide 4: Discussion Questions -->
+        <div class="slide">
+            <h2>💭 Let's Discuss</h2>
+            <h3>What did you notice about how they worked?</h3>
+            <div style="height: 100px;"></div>
+            <h3>What questions do you have about different EMS jobs?</h3>
+            <div style="height: 100px;"></div>
+            <p style="font-size: 1.6em; color: #FFD700;">Today you'll discover the entire EMS ecosystem that supports heroes like this!</p>
+        </div>
+        
+        <!-- Slide 5: Station Overview -->
+        <div class="slide">
+            <h2>🔍 EMS Ecosystem Discovery</h2>
+            <h3>Station Rotation - 4 Groups, 10 Minutes Each</h3>
+            <div class="station-grid">
+                <div class="station-card">
+                    <h4>Station 1: OEMS Research</h4>
+                    <p>Student Seating Area</p>
+                    <p>Virginia Office of EMS - the big picture</p>
+                </div>
+                <div class="station-card">
+                    <h4>Station 2: Local EMS Agencies</h4>
+                    <p>Lab Table A</p>
+                    <p>Your community's EMS providers</p>
+                </div>
+                <div class="station-card">
+                    <h4>Station 3: EMS Career Levels</h4>
+                    <p>Lab Table B</p>
+                    <p>EMT → AEMT → Paramedic</p>
+                </div>
+                <div class="station-card">
+                    <h4>Station 4: Education Pathways</h4>
+                    <p>Scenario Space</p>
+                    <p>From here to your EMS career</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 6: Station 1 Details -->
+        <div class="slide">
+            <h2>📋 Station 1: OEMS Research</h2>
+            <h3>Virginia Office of Emergency Medical Services</h3>
+            <ul>
+                <li>What is OEMS and what do they do?</li>
+                <li>How do they oversee EMT certification?</li>
+                <li>What are EMS protocols and who creates them?</li>
+                <li>How does OEMS ensure quality EMS care across Virginia?</li>
+            </ul>
+            <div class="objective-box">
+                <p><strong>Complete the OEMS functions worksheet using Chromebooks</strong></p>
+            </div>
+        </div>
+        
+        <!-- Slide 7: Station 2 Details -->
+        <div class="slide">
+            <h2>🚑 Station 2: Local EMS Agencies</h2>
+            <h3>Your Community's EMS Providers</h3>
+            <ul>
+                <li>What types of EMS agencies serve our area?</li>
+                <li>Volunteer vs. Career vs. Hospital-based services</li>
+                <li>How do coverage areas work?</li>
+                <li>What makes each agency unique?</li>
+            </ul>
+            <div class="objective-box">
+                <p><strong>Create a comparison chart of local agencies</strong></p>
+            </div>
+        </div>
+        
+        <!-- Slide 8: Station 3 Details -->
+        <div class="slide">
+            <h2>📈 Station 3: EMS Career Levels</h2>
+            <h3>Understanding Your Career Progression</h3>
+            <ul>
+                <li><strong>EMT:</strong> What can they do? Education needed?</li>
+                <li><strong>AEMT:</strong> Advanced skills and responsibilities</li>
+                <li><strong>Paramedic:</strong> Highest level of pre-hospital care</li>
+                <li>How does scope of practice differ between levels?</li>
+            </ul>
+            <div class="objective-box">
+                <p><strong>Develop a career progression timeline</strong></p>
+            </div>
+        </div>
+        
+        <!-- Slide 9: Station 4 Details -->
+        <div class="slide">
+            <h2>🎓 Station 4: Education Pathways</h2>
+            <h3>From High School to Advanced EMS Careers</h3>
+            <ul>
+                <li>What education is required for each EMS level?</li>
+                <li>How does the certification process work?</li>
+                <li>What about continuing education requirements?</li>
+                <li>What are possible specialization areas?</li>
+            </ul>
+            <div class="objective-box">
+                <p><strong>Map pathways from high school to advanced EMS careers</strong></p>
+            </div>
+        </div>
+        
+        <!-- Slide 10: Timer Slide -->
+        <div class="slide">
+            <h2>⏰ Station Rotation Timer</h2>
+            <div class="timer-display" id="timerDisplay">10:00</div>
+            <h3 id="currentStation">Starting Stations</h3>
+            <p style="font-size: 1.6em;">Stay focused and gather quality information!</p>
+            <button class="nav-btn" onclick="startTimer()">Start 10-Minute Timer</button>
+        </div>
+        
+        <!-- Slide 11: Vocabulary -->
+        <div class="slide">
+            <h2>📚 Today's EMS Vocabulary</h2>
+            <div class="vocab-grid">
+                <div class="vocab-card">
+                    <div class="vocab-term">OEMS</div>
+                    <div>Virginia Office of Emergency Medical Services</div>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-term">NHTSA</div>
+                    <div>National Highway Traffic Safety Administration</div>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-term">NREMT</div>
+                    <div>National Registry of Emergency Medical Technicians</div>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-term">Scope of Practice</div>
+                    <div>What EMTs are legally allowed to do</div>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-term">Protocol</div>
+                    <div>Standardized treatment guidelines</div>
+                </div>
+                <div class="vocab-card">
+                    <div class="vocab-term">ALS vs BLS</div>
+                    <div>Advanced vs Basic Life Support</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 12: Group Presentations -->
+        <div class="slide">
+            <h2>🎤 Time to Share Your Discoveries</h2>
+            <h3>Each Group: 5 Minutes</h3>
+            <ul>
+                <li><strong>Group 1:</strong> OEMS - The big picture of Virginia EMS</li>
+                <li><strong>Group 2:</strong> Local Agencies - Our community's providers</li>
+                <li><strong>Group 3:</strong> Career Levels - EMT to Paramedic progression</li>
+                <li><strong>Group 4:</strong> Education Pathways - Getting there from here</li>
+            </ul>
+            <div class="objective-box">
+                <p><strong>Listen actively - you'll need this information for your career map!</strong></p>
+            </div>
+        </div>
+        
+        <!-- Slide 13: Career Mapping Activity -->
+        <div class="slide">
+            <h2>🗺️ Create Your Personal Career Pathway Map</h2>
+            <h3>Individual Work (20 minutes)</h3>
+            <p>Your map should include:</p>
+            <ul>
+                <li><span class="highlight">Current position:</span> High school EMT student</li>
+                <li><span class="highlight">Next step:</span> EMT certification and first job</li>
+                <li><span class="highlight">Medium term:</span> AEMT or Paramedic goals</li>
+                <li><span class="highlight">Long term:</span> Specializations or leadership roles</li>
+                <li><span class="highlight">Education needed:</span> For each advancement</li>
+                <li><span class="highlight">Timeline:</span> Realistic progression dates</li>
+            </ul>
+        </div>
+        
+        <!-- Slide 14: Pair & Share -->
+        <div class="slide">
+            <h2>👥 Pair & Share Your Career Maps</h2>
+            <h3>Compare pathways with your partner (10 minutes)</h3>
+            <ul>
+                <li>What similarities do you notice in your plans?</li>
+                <li>What different approaches are you each taking?</li>
+                <li>What questions do you still have about requirements?</li>
+                <li>How can you support each other's goals?</li>
+            </ul>
+            <div class="objective-box">
+                <p><strong>Prepare your maps for gallery walk - add any clarifying questions!</strong></p>
+            </div>
+        </div>
+        
+        <!-- Slide 15: Homework & Wrap-up -->
+        <div class="slide">
+            <h2>📝 Tonight's Mission</h2>
+            <ul>
+                <li><strong>Research:</strong> One local EMS agency we didn't cover in class</li>
+                <li><strong>Complete:</strong> Your career pathway map with specific timeline</li>
+                <li><strong>Prepare:</strong> 3 questions about EMS careers for tomorrow</li>
+                <li><strong>Read:</strong> Workplace safety handout (prep for Day 3)</li>
+            </ul>
+            <div class="objective-box">
+                <h3>🎯 Tomorrow: "Safety First, Always"</h3>
+                <p>We'll explore PPE, safety protocols, and hazard assessment - the foundation that keeps EMTs and patients safe!</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="navigation">
+        <button class="nav-btn" onclick="changeSlide(-1)">← Previous</button>
+        <button class="nav-btn" onclick="changeSlide(1)">Next →</button>
+    </div>
+    
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('totalSlides').textContent = totalSlides;
+        
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+            document.getElementById('currentSlide').textContent = index + 1;
+        }
+        
+        function changeSlide(direction) {
+            currentSlideIndex += direction;
+            if (currentSlideIndex >= totalSlides) currentSlideIndex = 0;
+            if (currentSlideIndex < 0) currentSlideIndex = totalSlides - 1;
+            showSlide(currentSlideIndex);
+        }
+        
+        // Timer functionality
+        let timerInterval;
+        let timeLeft = 600; // 10 minutes in seconds
+        
+        function startTimer() {
+            timeLeft = 600;
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+        
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timerDisplay').textContent = 
+                `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                document.getElementById('timerDisplay').textContent = "ROTATE!";
+                document.getElementById('timerDisplay').style.color = "#FF4444";
+            }
+            timeLeft--;
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowLeft') changeSlide(-1);
+            if (event.key === 'ArrowRight') changeSlide(1);
+        });
+    </script>
+</body>
+</html>
