@@ -1,0 +1,518 @@
+    <script>
+        // Simple slide navigation for teaching slides
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        function showSlide(n) {
+            if (slides.length === 0) return;
+            slides[currentSlide].classList.remove('active');
+            currentSlide = n;
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
+            if (currentSlide >= totalSlides) currentSlide = 0;
+            slides[currentSlide].classList.add('active');
+        }
+        
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+        
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            }
+            if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+        
+        // Add click navigation
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.slide')) {
+                nextSlide();
+            }
+        });
+        
+        // Initialize first slide
+        if (slides.length > 0) {
+            slides[0].classList.add('active');
+        }
+    </script><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 1: Welcome to Your Future - Teaching Slides</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+        }
+        .slide {
+            max-width: 900px;
+            margin: 0 auto 40px;
+            background: white;
+            color: #333;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            page-break-after: always;
+            position: relative;
+        }
+        .slide h1 {
+            color: #d32f2f;
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #d32f2f;
+            padding-bottom: 15px;
+        }
+        .slide h2 {
+            color: #1976d2;
+            font-size: 28px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .slide h3 {
+            color: #d32f2f;
+            font-size: 22px;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        .slide-number {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            background: #d32f2f;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+        }
+        .timer {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            background: #ff9800;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .title-slide {
+            background: linear-gradient(135deg, #d32f2f, #f44336);
+            color: black;
+            text-align: center;
+        }
+        .title-slide h1 {
+            color: black;
+            font-size: 48px;
+            border: none;
+            margin-bottom: 30px;
+        }
+        .title-slide h2 {
+            color: black;
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+        .subtitle {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: black;
+        }
+        ul {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .teacher-notes {
+            background: #fff3e0;
+            border: 3px solid #ff9800;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+        .teacher-notes h4 {
+            margin: 0 0 10px 0;
+            color: #e65100;
+            font-size: 18px;
+        }
+        .student-action {
+            background: #e8f5e8;
+            border: 3px solid #4caf50;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+        .student-action h4 {
+            margin: 0 0 10px 0;
+            color: #2e7d32;
+            font-size: 18px;
+        }
+        .highlight-box {
+            background: #e3f2fd;
+            border: 2px solid #1976d2;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .important {
+            background: #ffebee;
+            border: 2px solid #d32f2f;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .center {
+            text-align: center;
+        }
+        .emoji {
+            font-size: 48px;
+            margin: 20px 0;
+        }
+        .phase-indicator {
+            background: #9c27b0;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        @media print {
+            body { background: white; }
+            .slide { box-shadow: none; page-break-after: always; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Slide 1: Title & Setup -->
+<div class="slide title-slide">
+    <div class="slide-number">1</div>
+    <div class="timer">⏰ Setup Time</div>
+    <div class="emoji">🚑</div>
+    <h1>Welcome to Your Future</h1>
+    <h2>EMT Training Program</h2>
+    <div class="subtitle">Day 1: August 25, 2025 | Mr. Timothy Doughty</div>
+    
+    <div class="teacher-notes">
+        <h4>🎯 Pre-Class Setup (10 min):</h4>
+        <p>• Equipment staged on lab tables • Ambulance simulator prepped • Name tags ready • Emergency scenario cards placed • Identity card templates printed</p>
+    </div>
+    
+    <div class="student-action">
+        <h4>👥 As Students Enter:</h4>
+        <p>• Greet each student personally • Hand out name tags • "Find a seat anywhere - we'll mix schools today!" • "Take a look around - this is your EMT classroom!"</p>
+    </div>
+</div>
+
+<!-- Slide 2: ENGAGE - Icebreaker -->
+<div class="slide">
+    <div class="slide-number">2</div>
+    <div class="timer">⏰ 15 min</div>
+    <div class="phase-indicator">ENGAGE Phase</div>
+    <h1>🤝 Let's Get Started!</h1>
+    
+    <div class="teacher-notes">
+        <h4>🎯 Your Goal:</h4>
+        <p>Break ice between schools, assess interest level, generate excitement</p>
+        <h4>⚠️ Stay Focused:</h4>
+        <p>Keep stories brief! Set timer if needed. If questions come up, say "Great question - let's park that for later!"</p>
+    </div>
+    
+    <div class="student-action">
+        <h4>👥 Student Instructions (Say This):</h4>
+        <p><strong>"Find someone from a DIFFERENT school and pair up. Share your name, school, and answer these two questions:"</strong></p>
+        <ul>
+            <li><strong>Why did you choose EMT training?</strong></li>
+            <li><strong>What's one thing you think you know about EMT work?</strong></li>
+        </ul>
+        <p><strong>"You have 8 minutes - go!"</strong></p>
+    </div>
+    
+    <div class="important">
+        <h3>🔥 HOOK (Last 3 minutes):</h3>
+        <p><strong>"EMTs your age are saving lives RIGHT NOW. By spring, you'll have those same skills and knowledge. Let's see what that looks like..."</strong></p>
+    </div>
+</div>
+
+<!-- Slide 3: EXPLORE Setup -->
+<div class="slide">
+    <div class="slide-number">3</div>
+    <div class="timer">⏰ 35 min</div>
+    <div class="phase-indicator">EXPLORE Phase</div>
+    <h1>🔍 EMT Reality Check Stations</h1>
+    
+    <div class="teacher-notes">
+        <h4>🎯 Your Goal:</h4>
+        <p>Let them discover, don't lecture yet! Circulate and listen. Take mental notes of misconceptions to address later.</p>
+        <h4>⚠️ If Students Ask Detailed Questions:</h4>
+        <p>"That's exactly what we'll cover in detail - write that question down for our discussion!"</p>
+    </div>
+    
+    <div class="student-action">
+        <h4>👥 Station Setup (Say This):</h4>
+        <p><strong>"You'll rotate through 4 stations in groups of 4-5. Mix schools in your groups! Spend 8 minutes at each station."</strong></p>
+    </div>
+    
+    <h2>🏥 Station Assignments:</h2>
+    <h3>Station 1: Medical Equipment (Lab Table A)</h3>
+    <p><strong>Task:</strong> Handle equipment, predict uses, discuss observations</p>
+    
+    <h3>Station 2: Emergency Scenarios (Lab Table B)</h3>
+    <p><strong>Task:</strong> Read 911 call scenarios, discuss initial reactions</p>
+    
+    <h3>Station 3: Ambulance Simulator</h3>
+    <p><strong>Task:</strong> Explore patient compartment, note features, ask questions</p>
+    
+    <h3>Station 4: Course Expectations (Student Seating)</h3>
+    <p><strong>Task:</strong> Review materials, identify interests and concerns</p>
+    
+    <div class="important">
+        <h3>⏰ Rotation Schedule:</h3>
+        <p><strong>8 minutes per station + 1 minute transition = 36 minutes total</strong></p>
+    </div>
+</div>
+
+<!-- Slide 4: Station Rotation Timer -->
+<div class="slide">
+    <div class="slide-number">4</div>
+    <div class="timer">⏰ Active Timer</div>
+    <div class="phase-indicator">EXPLORE Phase - Active</div>
+    <h1>🔄 Station Rotations in Progress</h1>
+    
+    <div class="center">
+        <h2 style="font-size: 72px; color: #d32f2f;">8:00</h2>
+        <h3>Minutes per station</h3>
+    </div>
+    
+    <div class="teacher-notes">
+        <h4>🎯 Your Job During Rotations:</h4>
+        <p>• Circulate between stations • Ask "What are you noticing?" • Note misconceptions for later • Don't answer detailed questions yet - say "Great observation, we'll dig into that!"</p>
+        <h4>⚠️ Keep Groups Moving:</h4>
+        <p>Call out "2 minutes left!" and "Time to rotate!" Use timer/phone alarm.</p>
+    </div>
+    
+    <div class="student-action">
+        <h4>👥 Rotation Announcements:</h4>
+        <p><strong>Start:</strong> "Begin exploring! Remember to mix with different schools!"</p>
+        <p><strong>2 min warning:</strong> "Two minutes left at your current station!"</p>
+        <p><strong>Rotate:</strong> "Time! Rotate to your next station!"</p>
+        <p><strong>Final station:</strong> "Last rotation - make it count!"</p>
+    </div>
+</div>
+
+<!-- Slide 5: EXPLAIN - Your EMT Mission -->
+<div class="slide">
+    <div class="slide-number">5</div>
+    <div class="timer">⏰ 25 min</div>
+    <div class="phase-indicator">EXPLAIN Phase</div>
+    <h1>🎯 Your EMT Mission</h1>
+    
+    <div class="teacher-notes">
+        <h4>🎯 Your Goal:</h4>
+        <p>Address misconceptions from stations, set clear expectations, build excitement</p>
+        <h4>⚠️ Time Management:</h4>
+        <p>This is where you can get derailed! Stick to the structure. Save detailed questions for later.</p>
+    </div>
+    
+    <h2>🎖️ Program Expectations</h2>
+    <ul>
+        <li>This is a serious program that leads to <strong>real certification</strong></li>
+        <li>You'll learn the <strong>same skills as professional EMTs</strong></li>
+        <li>Expect to <strong>study regularly</strong> and practice hands-on skills</li>
+    </ul>
+    
+    <div class="important">
+        <h3>📱 No Phone Policy</h3>
+        <p><strong>"Real EMTs can't check social media during emergencies!"</strong></p>
+    </div>
+    
+    <div class="student-action">
+        <h4>👥 Check for Understanding:</h4>
+        <p><strong>"Before we continue - any questions about expectations? Remember, this isn't regular high school class!"</strong></p>
+    </div>
+</div>
+
+<!-- Slide 6: Program Timeline -->
+<div class="slide">
+    <div class="slide-number">6</div>
+    <div class="timer">⏰ Still 25 min</div>
+    <div class="phase-indicator">EXPLAIN Phase</div>
+    <h1>📅 Your Journey to EMT Certification</h1>
+    
+    <div class="teacher-notes">
+        <h4>⚠️ Pace Yourself:</h4>
+        <p>Don't get bogged down in details. Hit the highlights, move on. Details are in their handbook.</p>
+    </div>
+    
+    <h2>🚀 Phase 1: Getting Ready (Weeks 1-2)</h2>
+    <p>Build foundations, learn medical language</p>
+    
+    <h2>📚 Phase 2: Learning EMT Skills (September-February)</h2>
+    <p>Patient assessment, medical emergencies, trauma care</p>
+    
+    <h2>🎯 Phase 3: Test Preparation (March-April)</h2>
+    <p>Skills practice, National Registry prep</p>
+    
+    <h2>⭐ Phase 4: Advanced Skills (April-June)</h2>
+    <p>Specialized training, career preparation</p>
+    
+    <div class="student-action">
+        <h4>👥 Reality Check:</h4>
+        <p><strong>"Look around - these people will be your EMT teammates. You're all starting the same journey today!"</strong></p>
+    </div>
+</div>
+
+<!-- Slide 7: What Makes a Good EMT -->
+<div class="slide">
+    <div class="slide-number">7</div>
+    <div class="timer">⏰ Still 25 min</div>
+    <div class="phase-indicator">EXPLAIN Phase</div>
+    <h1>⭐ What Makes a Good EMT?</h1>
+    
+    <div class="teacher-notes">
+        <h4>🎯 Connect to Station Observations:</h4>
+        <p>"Based on what you saw at the stations, what qualities do you think EMTs need?"</p>
+    </div>
+    
+    <h2>💛 EMTs Help People in Their Worst Moments</h2>
+    <ul>
+        <li><strong>Compassionate and caring</strong> - You're often the first help they see</li>
+        <li><strong>Calm under pressure</strong> - Your calm helps them stay calm</li>
+        <li><strong>Skilled and knowledgeable</strong> - Lives depend on what you know</li>
+    </ul>
+    
+    <h2>🤝 Everyone Can Be a Leader</h2>
+    <ul>
+        <li><strong>Leadership means serving others</strong> - Not being bossy</li>
+        <li><strong>Making good decisions quickly</strong> - When seconds count</li>
+        <li><strong>Working as part of a team</strong> - You're never alone</li>
+    </ul>
+    
+    <div class="student-action">
+        <h4>👥 Discussion Prompt:</h4>
+        <p><strong>"What personal qualities do YOU have that would help in emergency situations?"</strong></p>
+    </div>
+</div>
+
+<!-- Slide 8: EXTEND - Identity Development -->
+<div class="slide">
+    <div class="slide-number">8</div>
+    <div class="timer">⏰ 35 min</div>
+    <div class="phase-indicator">EXTEND Phase</div>
+    <h1>🆔 Create Your EMT Identity</h1>
+    
+    <div class="teacher-notes">
+        <h4>🎯 Your Goal:</h4>
+        <p>Get them thinking personally about EMT work. Circulate and encourage thoughtful responses.</p>
+        <h4>⚠️ Time Management:</h4>
+        <p>15 min individual work, 15 min group sharing, 5 min wrap-up. Use timer!</p>
+    </div>
+    
+    <h2>📝 Individual Work (15 minutes)</h2>
+    <div class="student-action">
+        <h4>👥 Instructions (Say This):</h4>
+        <p><strong>"Work alone first. Be honest - this is about YOU, not what you think I want to hear."</strong></p>
+        <p><strong>Create your EMT Identity Card with:</strong></p>
+        <ul>
+            <li>📸 Your name and photo space</li>
+            <li>🌟 Three personal qualities for EMT work</li>
+            <li>📈 One leadership skill to develop</li>
+            <li>💛 Why you want to become an EMT</li>
+            <li>🎯 One program goal</li>
+        </ul>
+    </div>
+    
+    <div class="important">
+        <h3>🔄 After 15 Minutes: Group Sharing</h3>
+        <p><strong>"Form groups of 4 with people from different schools. Share your cards and give each other feedback."</strong></p>
+    </div>
+</div>
+
+<!-- Slide 9: EVALUATE - Assessment & Wrap -->
+<div class="slide">
+    <div class="slide-number">9</div>
+    <div class="timer">⏰ 10 min</div>
+    <div class="phase-indicator">EVALUATE Phase</div>
+    <h1>✅ How Did We Do Today?</h1>
+    
+    <div class="teacher-notes">
+        <h4>🎯 Your Goal:</h4>
+        <p>Quick assessment, set homework expectations, build excitement for tomorrow</p>
+        <h4>⚠️ Don't Overrun:</h4>
+        <p>Students need time to pack up and ask individual questions</p>
+    </div>
+    
+    <h2>📊 Quick Self-Check</h2>
+    <div class="student-action">
+        <h4>👥 Instructions:</h4>
+        <p><strong>"Rate yourself 1-5 on:"</strong></p>
+        <ul>
+            <li>Understanding what this program involves</li>
+            <li>Excitement about learning EMT skills</li>
+            <li>Confidence you can succeed</li>
+            <li>Feeling part of this EMT team</li>
+        </ul>
+    </div>
+    
+    <h2>🏠 Tonight's Homework</h2>
+    <ul>
+        <li>✏️ <strong>Complete identity cards</strong> (finish incomplete sections)</li>
+        <li>📖 <strong>Read course handbook</strong> (rules and expectations)</li>
+        <li>💭 <strong>Write one paragraph:</strong> "What makes a good EMT?"</li>
+    </ul>
+    
+    <div class="important">
+        <h3>🎉 Closing Ceremony</h3>
+        <p><strong>"Place your identity cards in the 'Future EMT' box. We'll open this when you graduate as real EMTs!"</strong></p>
+    </div>
+</div>
+
+<!-- Slide 10: Tomorrow Preview & Questions -->
+<div class="slide">
+    <div class="slide-number">10</div>
+    <div class="timer">⏰ Wrap Up</div>
+    <h1>🚀 You Did Great Today!</h1>
+    
+    <div class="teacher-notes">
+        <h4>🎯 End Strong:</h4>
+        <p>Build excitement for tomorrow, handle individual questions, positive energy!</p>
+    </div>
+    
+    <h2>📅 Tomorrow Preview</h2>
+    <p><strong>🌍 Day 2: Know Your EMS World</strong></p>
+    <ul>
+        <li>Research EMS organizations</li>
+        <li>Explore career pathways</li>
+        <li>Local EMS agency deep-dive</li>
+    </ul>
+    
+    <h2>❓ Last Questions?</h2>
+    <div class="student-action">
+        <h4>👥 Closing Message:</h4>
+        <p><strong>"You just took the first step toward becoming an EMT. Three different schools, one amazing team. See you tomorrow!"</strong></p>
+    </div>
+    
+    <div class="highlight-box center">
+        <h3>🎖️ Remember: You're Future Lifesavers</h3>
+        <p>Every question you asked, every observation you made, every goal you set - it all matters. This is the beginning of something incredible.</p>
+    </div>
+</div>
+
+</body>
+</html>
