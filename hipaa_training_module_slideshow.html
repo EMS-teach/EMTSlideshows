@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIPAA Compliance Training for EMS Professionals</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            width: 95%;
+            max-width: 900px;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #c53030 0%, #dc2626 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .progress-bar {
+            background: #f1f5f9;
+            height: 6px;
+            margin: 0 20px 20px;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            background: linear-gradient(90deg, #10b981, #059669);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .slide {
+            padding: 30px;
+            min-height: 500px;
+            display: none;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        .slide h2 {
+            color: #1f2937;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .slide h3 {
+            color: #374151;
+            margin: 20px 0 10px;
+            font-size: 1.3em;
+        }
+        
+        .slide p, .slide li {
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .slide ul {
+            margin-left: 20px;
+        }
+        
+        .resource-link {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px;
+            transition: background 0.3s;
+        }
+        
+        .resource-link:hover {
+            background: #2563eb;
+        }
+        
+        .citation {
+            font-size: 0.9em;
+            color: #6b7280;
+            font-style: italic;
+            margin-top: 10px;
+        }
+        
+        .quiz-container {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .question {
+            display: none;
+            margin-bottom: 20px;
+        }
+        
+        .question.active {
+            display: block;
+        }
+        
+        .question h4 {
+            color: #1f2937;
+            margin-bottom: 15px;
+        }
+        
+        .option {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .option:hover {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+        
+        .option.selected {
+            border-color: #3b82f6;
+            background: #dbeafe;
+        }
+        
+        .option.correct {
+            border-color: #10b981;
+            background: #d1fae5;
+        }
+        
+        .option.incorrect {
+            border-color: #ef4444;
+            background: #fee2e2;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background: #f8fafc;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2563eb;
+        }
+        
+        .btn-secondary {
+            background: #6b7280;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .slide-counter {
+            color: #6b7280;
+            font-weight: 500;
+        }
+        
+        .results {
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .score {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .score.excellent { color: #10b981; }
+        .score.good { color: #f59e0b; }
+        .score.needs-improvement { color: #ef4444; }
+        
+        .certification {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .scenario-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .warning-box {
+            background: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .info-box {
+            background: #dbeafe;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>HIPAA Compliance Training for EMS Professionals</h1>
+            <p>Essential Knowledge for Emergency Medical Services Personnel</p>
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress" id="progressBar"></div>
+        </div>
+        
+        <!-- Slide 1: Introduction -->
+        <div class="slide active" id="slide1">
+            <h2>Welcome to HIPAA Training for EMS</h2>
+            <p>The Health Insurance Portability and Accountability Act (HIPAA) is crucial for all Emergency Medical Services personnel. This training will provide you with essential knowledge to protect patient privacy and maintain compliance.</p>
+            
+            <h3>Learning Objectives</h3>
+            <ul>
+                <li>Understand HIPAA's purpose and scope for EMS providers</li>
+                <li>Identify Protected Health Information (PHI)</li>
+                <li>Apply the minimum necessary standard</li>
+                <li>Recognize permitted uses and disclosures</li>
+                <li>Implement safeguards to protect patient information</li>
+                <li>Handle breach situations appropriately</li>
+            </ul>
+            
+            <div class="info-box">
+                <strong>Training Duration:</strong> Approximately 20-25 minutes<br>
+                <strong>Target Audience:</strong> EMT, AEMT, and Paramedic personnel<br>
+                <strong>Format:</strong> Educational content + 10-question quiz
+            </div>
+            
+            <div class="citation">Source: Camp Community College EMS Program materials and HHS HIPAA guidelines</div>
+        </div>
+        
+        <!-- Slide 2: What is HIPAA? -->
+        <div class="slide" id="slide2">
+            <h2>What is HIPAA?</h2>
+            <p>HIPAA was enacted in 1996 and provides for criminal sanctions as well as civil penalties for releasing a patient's confidential medical information in an unauthorized manner.</p>
+            
+            <h3>Key Components</h3>
+            <ul>
+                <li><strong>Privacy Rule:</strong> Protects individually identifiable health information</li>
+                <li><strong>Security Rule:</strong> Sets standards for protecting electronic PHI</li>
+                <li><strong>Breach Notification Rule:</strong> Requires notification when PHI is compromised</li>
+            </ul>
+            
+            <div class="info-box">
+                <strong>HIPAA applies to EMS because:</strong> Most EMS agencies are "covered entities" that provide healthcare and transmit health information electronically (billing, patient records, etc.).
+            </div>
+            
+            <h3>Free Training Resources</h3>
+            <a href="https://www.hhs.gov/hipaa/for-professionals/training/index.html" target="_blank" class="resource-link">HHS Official HIPAA Training</a>
+            <a href="https://www.healthit.gov/topic/privacy-security-and-hipaa/hipaa-basics" target="_blank" class="resource-link">HealthIT.gov HIPAA Basics</a>
+            
+            <div class="citation">Sources: 45 CFR Parts 160 and 164; Camp Community College EMS Handbook; HHS.gov HIPAA Training Resources</div>
+        </div>
+        
+        <!-- Slide 3: Protected Health Information -->
+        <div class="slide" id="slide3">
+            <h2>Protected Health Information (PHI)</h2>
+            <p>PHI includes medical information or any information that can be used to identify the patient.</p>
+            
+            <h3>Examples of PHI Include:</h3>
+            <ul>
+                <li>Patient name, address, phone number</li>
+                <li>Date of birth, Social Security number</li>
+                <li>Medical record numbers</li>
+                <li>Account numbers</li>
+                <li>Photos, videos, or audio recordings</li>
+                <li>Biometric identifiers</li>
+                <li>Any health information that can identify an individual</li>
+            </ul>
+            
+            <div class="scenario-box">
+                <strong>EMS Scenario:</strong> You respond to a car accident. The patient's medical history, vital signs, treatments provided, and even the fact that they were transported to the hospital all constitute PHI.
+            </div>
+            
+            <h3>Electronic PHI (ePHI)</h3>
+            <p>Any PHI that is stored, accessed, or transmitted electronically, including:</p>
+            <ul>
+                <li>Electronic patient care reports (ePCRs)</li>
+                <li>Digital photos or videos</li>
+                <li>Email communications about patients</li>
+                <li>Electronic medical records</li>
+            </ul>
+            
+            <div class="citation">Source: 45 CFR 164.501; Advanced Emergency Care and Transportation textbook; NEMSIS documentation standards</div>
+        </div>
+        
+        <!-- Slide 4: EMS and HIPAA Compliance -->
+        <div class="slide" id="slide4">
+            <h2>EMS and HIPAA Compliance</h2>
+            <p>EMS providers must safeguard all PHI from unlawful disclosure, whether written or verbal.</p>
+            
+            <h3>Required Safeguards</h3>
+            <ul>
+                <li><strong>Administrative:</strong> Policies, procedures, training programs</li>
+                <li><strong>Physical:</strong> Securing devices, limiting access to workstations</li>
+                <li><strong>Technical:</strong> Encryption, access controls, audit logs</li>
+            </ul>
+            
+            <div class="warning-box">
+                <strong>Never leave electronic devices or patient reports containing PHI unattended!</strong> This includes tablets, laptops, paper PCRs, and mobile devices.
+            </div>
+            
+            <h3>Special EMS Considerations</h3>
+            <ul>
+                <li>PHI must be maintained when multiple patients are in the ambulance</li>
+                <li>Avoid discussing patient information where others can overhear</li>
+                <li>Each EMS agency must have a designated privacy officer</li>
+                <li>Emergency situations don't exempt you from HIPAA requirements</li>
+            </ul>
+            
+            <a href="https://www.vdh.virginia.gov/emergency-medical-services/regulations-compliance/ems-hippa/" target="_blank" class="resource-link">Virginia EMS HIPAA Guidelines</a>
+            
+            <div class="citation">Sources: Camp Community College EMS materials; Virginia Department of Health EMS HIPAA guidance; 45 CFR 164.530</div>
+        </div>
+        
+        <!-- Slide 5: Permitted Uses and Disclosures -->
+        <div class="slide" id="slide5">
+            <h2>Permitted Uses and Disclosures</h2>
+            <p>HIPAA allows disclosure of PHI without patient authorization for Treatment, Payment, and Operations (TPO).</p>
+            
+            <h3>Treatment</h3>
+            <ul>
+                <li>Providing, coordinating, or managing healthcare</li>
+                <li>Consulting with other healthcare providers</li>
+                <li>Referring patients for healthcare</li>
+            </ul>
+            
+            <div class="scenario-box">
+                <strong>EMS Example:</strong> You can share patient information with the receiving hospital emergency department to ensure continuity of care.
+            </div>
+            
+            <h3>Payment</h3>
+            <ul>
+                <li>Activities related to billing and collection</li>
+                <li>Insurance verification and claims processing</li>
+                <li>Utilization review activities</li>
+            </ul>
+            
+            <h3>Healthcare Operations</h3>
+            <ul>
+                <li>Quality assurance and improvement activities</li>
+                <li>Training programs for healthcare professionals</li>
+                <li>Compliance with regulatory requirements</li>
+            </ul>
+            
+            <h3>Other Permitted Disclosures</h3>
+            <ul>
+                <li>Required by law (court orders, subpoenas)</li>
+                <li>Public health activities</li>
+                <li>Law enforcement (limited circumstances)</li>
+                <li>To prevent serious threat to health or safety</li>
+            </ul>
+            
+            <a href="https://www.paubox.com/blog/hipaa-and-patient-consent-in-emergency-medical-services-ems" target="_blank" class="resource-link">EMS HIPAA Consent Guidelines</a>
+            
+            <div class="citation">Sources: 45 CFR 164.506; JEMS HIPAA and EMS guidance; Paubox EMS HIPAA resources</div>
+        </div>
+        
+        <!-- Slide 6: Minimum Necessary Standard -->
+        <div class="slide" id="slide6">
+            <h2>Minimum Necessary Standard</h2>
+            <p>Use, disclose, or request only the minimum amount of PHI necessary to accomplish the intended purpose.</p>
+            
+            <h3>Key Principles</h3>
+            <ul>
+                <li>Only access PHI needed for your specific job function</li>
+                <li>Share only relevant information with other healthcare providers</li>
+                <li>Limit who has access to patient information</li>
+                <li>Review and limit routine disclosures</li>
+            </ul>
+            
+            <div class="scenario-box">
+                <strong>EMS Scenario:</strong> When giving report to the hospital, share only relevant clinical information needed for patient care. Don't include unrelated personal details or family dynamics unless medically relevant.
+            </div>
+            
+            <h3>Exceptions to Minimum Necessary</h3>
+            <ul>
+                <li>Disclosures to healthcare providers for treatment</li>
+                <li>Disclosures required by law</li>
+                <li>Uses or disclosures authorized by the patient</li>
+            </ul>
+            
+            <div class="warning-box">
+                <strong>Remember:</strong> Even when minimum necessary doesn't apply, professional judgment should guide what information is shared.
+            </div>
+            
+            <div class="citation">Source: 45 CFR 164.502(b); HHS Minimum Necessary Guidance</div>
+        </div>
+        
+        <!-- Slide 7: Social Media and Technology -->
+        <div class="slide" id="slide7">
+            <h2>Social Media and Technology Concerns</h2>
+            <p>Any sharing of private or protected information, whether directly or verbally, is a serious violation of HIPAA and ethical principles.</p>
+            
+            <h3>Social Media Guidelines</h3>
+            <ul>
+                <li>Never post patient information on social media</li>
+                <li>No photos, videos, or audio of patients</li>
+                <li>Avoid identifiable information even if names are removed</li>
+                <li>Be professional in all online communications</li>
+            </ul>
+            
+            <div class="warning-box">
+                <strong>Zero Tolerance:</strong> Posting patient information on social media can result in immediate termination and legal consequences.
+            </div>
+            
+            <h3>Technology Best Practices</h3>
+            <ul>
+                <li>Use strong passwords and don't share login credentials</li>
+                <li>Log out of systems when finished</li>
+                <li>Encrypt sensitive communications</li>
+                <li>Report lost or stolen devices immediately</li>
+                <li>Only use agency-approved communication methods</li>
+            </ul>
+            
+            <div class="info-box">
+                <strong>Agency Ownership:</strong> Information recorded using agency equipment or during duty hours typically belongs to the agency and must follow strict retention and disclosure rules.
+            </div>
+            
+            <a href="https://compliancy-group.com/free-hipaa-training/" target="_blank" class="resource-link">Free HIPAA IT Security Training</a>
+            
+            <div class="citation">Sources: Advanced Emergency Care textbook Ch. 3; Compliancy Group HIPAA resources; Social media best practices guidelines</div>
+        </div>
+        
+        <!-- Slide 8: Breach Notification -->
+        <div class="slide" id="slide8">
+            <h2>Breach Notification Requirements</h2>
+            <p>A breach is an unauthorized acquisition, access, use, or disclosure of PHI that compromises its security or privacy.</p>
+            
+            <h3>Examples of Breaches</h3>
+            <ul>
+                <li>Lost or stolen devices containing PHI</li>
+                <li>Sending PHI to wrong recipient</li>
+                <li>Unauthorized access to electronic records</li>
+                <li>Improper disposal of PHI</li>
+                <li>Discussing patients where others can overhear</li>
+            </ul>
+            
+            <h3>Reporting Requirements</h3>
+            <ul>
+                <li>Report immediately to your privacy officer</li>
+                <li>Document the incident thoroughly</li>
+                <li>Breaches affecting 500+ individuals must be reported to media</li>
+                <li>All breaches must be reported to HHS Office for Civil Rights</li>
+            </ul>
+            
+            <div class="warning-box">
+                <strong>Penalties:</strong> HIPAA violations can result in fines up to $71,162 per violation (2025 rates) and potential criminal charges.
+            </div>
+            
+            <h3>Prevention Strategies</h3>
+            <ul>
+                <li>Regular training and awareness programs</li>
+                <li>Implement strong access controls</li>
+                <li>Conduct regular risk assessments</li>
+                <li>Have incident response procedures in place</li>
+            </ul>
+            
+            <a href="https://www.hipaajournal.com/free-hipaa-training/" target="_blank" class="resource-link">HIPAA Journal Training Resources</a>
+            
+            <div class="citation">Sources: 45 CFR 164.400-414; HIPAA Journal breach statistics; Federal Register HIPAA Security Rule updates 2025</div>
+        </div>
+        
+        <!-- Slide 9: Patient Rights -->
+        <div class="slide" id="slide9">
+            <h2>Patient Rights Under HIPAA</h2>
+            <p>Patients have specific rights regarding their health information that EMS providers must respect.</p>
+            
+            <h3>Key Patient Rights</h3>
+            <ul>
+                <li><strong>Access:</strong> Right to see and get copies of their health records</li>
+                <li><strong>Amendment:</strong> Right to request corrections to their health information</li>
+                <li><strong>Accounting:</strong> Right to know who has accessed their information</li>
+                <li><strong>Restrictions:</strong> Right to request limits on use and disclosure</li>
+                <li><strong>Confidential Communications:</strong> Right to request alternative methods of contact</li>
+            </ul>
+            
+            <div class="info-box">
+                <strong>Notice of Privacy Practices:</strong> In emergency situations, EMS can provide this notice "as soon as reasonably practicable" after the emergency treatment.
+            </div>
+            
+            <h3>EMS-Specific Considerations</h3>
+            <ul>
+                <li>Emergency treatment doesn't require prior consent</li>
+                <li>Implied consent applies in life-threatening situations</li>
+                <li>Family members may receive limited information unless patient objects</li>
+                <li>Refer complex patient rights requests to your privacy officer</li>
+            </ul>
+            
+            <div class="scenario-box">
+                <strong>EMS Scenario:</strong> A conscious patient asks you not to transport them to a specific hospital because they don't want their employer to know about their condition. You should respect this request when medically appropriate.
+            </div>
+            
+            <div class="citation">Sources: 45 CFR 164.520; Summary of HIPAA Privacy Rule; Virginia EMS HIPAA guidelines</div>
+        </div>
+        
+        <!-- Slide 10: Best Practices Summary -->
+        <div class="slide" id="slide10">
+            <h2>HIPAA Best Practices for EMS</h2>
+            <p>Key practices to ensure HIPAA compliance in your daily EMS work.</p>
+            
+            <h3>Documentation</h3>
+            <ul>
+                <li>Document only objective findings</li>
+                <li>Omit personal opinions and non-medical observations</li>
+                <li>Use proper secure disposal methods for paper records</li>
+                <li>Follow NEMSIS standards for electronic documentation</li>
+            </ul>
+            
+            <h3>Communication</h3>
+            <ul>
+                <li>Only discuss patients with authorized personnel</li>
+                <li>Use private areas for patient discussions</li>
+                <li>Be mindful of who can overhear conversations</li>
+                <li>Never give patient information to media without authorization</li>
+            </ul>
+            
+            <h3>Technology Security</h3>
+            <ul>
+                <li>Use strong, unique passwords</li>
+                <li>Enable automatic screen locks</li>
+                <li>Keep software updated with security patches</li>
+                <li>Report security incidents immediately</li>
+            </ul>
+            
+            <div class="info-box">
+                <strong>Remember:</strong> When in doubt, protect patient privacy. It's better to be overly cautious than to violate HIPAA requirements.
+            </div>
+            
+            <h3>Additional Resources</h3>
+            <a href="https://training.safetyculture.com/blog/free-hipaa-training/" target="_blank" class="resource-link">Free HIPAA Training Programs</a>
+            <a href="https://www.hipaatraining.com/" target="_blank" class="resource-link">Comprehensive HIPAA Certification</a>
+            <a href="https://blocksurvey.io/hipaa-compliant-tools/hipaa-training-and-certification" target="_blank" class="resource-link">HIPAA Training Resources 2025</a>
+            
+            <div class="citation">Sources: Multiple HIPAA training resources; EMS best practices guidelines; Camp Community College policies</div>
+        </div>
+        
+        <!-- Quiz Slides -->
+        <div class="slide" id="quizSlide">
+            <h2>HIPAA Compliance Quiz</h2>
+            <p>Test your knowledge with these 10 multiple-choice questions. You need 80% (8/10) to pass.</p>
+            
+            <div class="quiz-container">
+                <!-- Question 1 -->
+                <div class="question active" id="q1">
+                    <h4>1. Which of the following is considered Protected Health Information (PHI)?</h4>
+                    <label class="option" data-value="a">
+                        <input type="radio" name="q1" value="a"> Patient's favorite color mentioned during transport
+                    </label>
+                    <label class="option" data-value="b">
+                        <input type="radio" name="q1" value="b"> Patient's blood pressure reading
+                    </label>
+                    <label class="option" data-value="c">
+                        <input type="radio" name="q1" value="c"> Weather conditions during the call
+                    </label>
+                    <label class="option" data-value="d">
+                        <input type="radio" name="q1" value="d"> General traffic conditions
+                    </label>
+                </div>
+                
+                <!-- Question 2 -->
+                <div class="question" id="q2">
+                    <h4>2. Under HIPAA's TPO exception, EMS can share patient information for all EXCEPT:</h4>
+                    <label class="option" data-value="a">
+                        <input type="radio" name="q2" value="a"> Treatment coordination with receiving hospital
+                    </label>
+                    <label class="option" data-value="b">
+                        <input type="radio" name="q2" value="b"> Insurance billing and claims processing
+                    </label>
+                    <label class="option" data-value="c">
+                        <input type="radio" name="q2" value="c"> Marketing pharmaceutical products to patients
+                    </label>
+                    <label class="option" data-value="d">
+                        <input type="radio" name="q2" value="d"> Quality assurance and improvement activities
+                    </label>
+                </div>
+                
+                <!-- Question 3 -->
+                <div class="question" id="q3">
+                    <h4>3. According to the minimum necessary standard, EMS personnel should:</h4>
+                    <label class="option" data-value="a">
+                        <input type="radio" name="q3" value="a"> Share all available patient information with the hospital
+                    </label>
+                    <label class="option" data-value="b">
+                        <input type="radio" name="q3" value="b"> Only share the minimum PHI necessary for the intended purpose
+                    </label>
+                    <label class="option" data-value="c">
+                        <input type="radio" name="q3" value="c"> Avoid sharing any patient information unless specifically requested
+                    </label>
+                    <label class="option" data-value="d">
+                        <input type="radio" name="q3" value="d"> Share information only with family members present
+                    </label>
+                </div>
+                
+                <!-- Question 4 -->
+                <div class="question" id="q4">
+                    <h4>4. Which scenario represents a HIPAA violation?</h4>
+                    <label class="option" data-value="a">
+                        <input type="radio" name="q4" value="a"> Giving patient report to receiving hospital staff
+                    </label>
+                    <label class="option" data-value="b">
+                        <input type="radio" name="q4" value="b"> Discussing a case for quality improvement purposes
+                    </label>
+                    <label class="option" data-value="c">
+                        <input type="radio" name="q4" value="c"> Posting a patient's photo on social media with consent
+                    </label>
+                    <label class="option" data-value="d">
+                        <input type="radio" name="q4" value="d"> Documenting patient refusal of treatment
+                    </label>
+                </div>
+                
+                <!-- Question 5 -->
+                <div class="question" id="q5">
+                    <h4>5. What should you do if you accidentally leave your tablet with patient information at a restaurant?</h4>
+                    <label class="option" data-value="a">
+                        <input type="radio" name="q5" value="a"> Wait until your next shift to report it
+                    </label>
+                    <label class="option" data-value="b">
+                        <input type="radio" name="q5" value="b"> Only report it if you can't retrieve the device
+                    </label>
+                    <label class="option" data-value="c">
+                        <input type="radio" name="q5" value="c"> Report it immediately to your privacy officer
+                    </label>
+                    <label class="option" data-value="d">
+                        <input type="radio" name="q5" value="d"> Ask the restaurant staff to look for it first
+                    </label>
+                </div>
+                
+                <!-- Question 6 -->
+                <div class="question" id="q6">
+                    <h4>6. EMS agencies must have which of the following to comply with HIPAA?</h4>
+                    <label class="option" data-value="a">
+                        <input type="radio" name="q6" value="a"> A designated privacy officer
+                    </label>
+                    <label class="option" data-value="b">
+                        <input type="radio" name="q6" value="b"> Written policies and procedures
+                    </label>
+                    <label class="option" data-value="c">
+                        <input type="radio" name="q6" value="c"> Workforce training programs
+                    </label>
+                    <label class="option" data-value="d">
+                        <input type="radio" name="q6" value="d"> All of the above
+                    </label>
+                </div>
+                
+                <!-- Question 7 -->
+                <div class="question" id="q7">
+                    <h4>7. When can EMS personnel share PHI with law enforcement without patient authorization?</h4>
+                    <label class="option" data-value="a">
+                        <input type="radio" name="q7" value="a"> Whenever law enforcement requests it
+                    </label>
+                    <label class="option" data-value="b">
+                        <input type="radio" name="q7" value="b"> Only when required by law or to prevent imminent harm
+                    </label>
+                    <label class="option" data-value="c">
+                        <input type="radio" name="q7" value="c"> When the patient is unconscious
+                    </label>
+                    <label class="option" data-value="d">
+                        <input type="radio" name="q7" value="d"> Never, under any circumstances
+                    </label>
+                </div>
+                
+                <!-- Question 8 -->
+                <div class="question" id="q8">
+                    <h4>8. Electronic PHI (ePHI) must be protected by which types of safeguards?</h4>
+                    <label class="option" data-value="a">
+                        <input type="radio" name="q8" value="a"> Administrative safeguards only
+                    </label>
+                    <label class="option" data-value="b">
+                        <input type="radio" name="q8" value="b"> Physical and technical safeguards only
+                    </label>
+                    <label class="option" data-value="c">
+                        <input type="radio" name="q8" value="c"> Administrative, physical, and technical safeguards
+                    </label>
+                    <label class="option" data-value="d">
+                        <input type="radio" name="q8" value="d"> Technical safeguards only
+                    </label>
+                </div>
+                
+                <!-- Question 9 -->
+                <div class="question" id="q9">
+                    <h4>9. In emergency situations, when must EMS provide the Notice of Privacy Practices to patients?</h4>
+                    <label class="option" data-value="a">
+                        <input type="radio" name="q9" value="a"> Before providing any treatment
+                    </label>
+                    <label class="option" data-value="b">
+                        <input type="radio" name="q9" value="b"> During transport to the hospital
+                    </label>
+                    <label class="option" data-value="c">
+                        <input type="radio" name="q9" value="c"> As soon as reasonably practicable after emergency treatment
+                    </label>
+                    <label class="option" data-value="d">
+                        <input type="radio" name="q9" value="d"> Only if the patient specifically requests it
+                    </label>
+                </div>
+                
+                <!-- Question 10 -->
+                <div class="question" id="q10">
+                    <h4>10. What is the maximum penalty per violation for HIPAA violations in 2025?</h4>
+                    <label class="option" data-value="a">
+                        <input type="radio" name="q10" value="a"> $10,000
+                    </label>
+                    <label class="option" data-value="b">
+                        <input type="radio" name="q10" value="b"> $25,000
+                    </label>
+                    <label class="option" data-value="c">
+                        <input type="radio" name="q10" value="c"> $50,000
+                    </label>
+                    <label class="option" data-value="d">
+                        <input type="radio" name="q10" value="d"> $71,162
+                    </label>
+                </div>
+            </div>
+            
+            <div class="quiz-navigation">
+                <button class="btn btn-secondary" id="prevQuizBtn" onclick="previousQuestion()" disabled>Previous</button>
+                <span class="slide-counter" id="quizCounter">Question 1 of 10</span>
+                <button class="btn btn-primary" id="nextQuizBtn" onclick="nextQuestion()">Next</button>
+                <button class="btn btn-primary" id="submitQuizBtn" onclick="submitQuiz()" style="display: none;">Submit Quiz</button>
+            </div>
+        </div>
+        
+        <!-- Results Slide -->
+        <div class="slide" id="resultsSlide">
+            <div class="results">
+                <h2>Quiz Results</h2>
+                <div class="score" id="scoreDisplay">0/10</div>
+                <p id="scoreMessage"></p>
+                
+                <div id="passResult" class="certification" style="display: none;">
+                    <h3>🎉 Congratulations!</h3>
+                    <p>You have successfully completed the HIPAA Compliance Training for EMS Professionals. You have demonstrated understanding of essential HIPAA requirements for emergency medical services.</p>
+                    
+                    <div id="nameEntry" style="margin: 20px 0;">
+                        <label for="studentName" style="display: block; margin-bottom: 5px; font-weight: bold;">Enter Your Full Name for Certificate:</label>
+                        <input type="text" id="studentName" placeholder="First Name Last Name" style="width: 100%; padding: 10px; border: 2px solid #e5e7eb; border-radius: 5px; font-size: 16px; margin-bottom: 10px;">
+                        <button class="btn btn-primary" onclick="generateCertificate()" style="margin-bottom: 20px;">Generate Certificate</button>
+                    </div>
+                    
+                    <div id="certificateDisplay" style="display: none;">
+                        <div id="printableCertificate" style="background: white; border: 3px solid #059669; padding: 40px; margin: 20px 0; border-radius: 10px; text-align: center;">
+                            <h2 style="color: #059669; font-size: 28px; margin-bottom: 20px;">Certificate of Completion</h2>
+                            <div style="border: 2px solid #059669; padding: 30px; margin: 20px 0;">
+                                <p style="font-size: 18px; margin-bottom: 15px;">This certifies that</p>
+                                <h3 id="certificateName" style="color: #1f2937; font-size: 24px; margin: 20px 0; text-decoration: underline;">Student Name</h3>
+                                <p style="font-size: 18px; margin: 15px 0;">has successfully completed</p>
+                                <h4 style="color: #059669; font-size: 20px; margin: 20px 0;">HIPAA Compliance Training for EMS Professionals</h4>
+                                <div style="display: flex; justify-content: space-between; margin-top: 30px; flex-wrap: wrap;">
+                                    <div style="text-align: left; flex: 1; min-width: 200px;">
+                                        <p><strong>Score:</strong> <span id="certScore"></span></p>
+                                        <p><strong>Date:</strong> <span id="certDate"></span></p>
+                                        <p><strong>Duration:</strong> ~25 minutes</p>
+                                    </div>
+                                    <div style="text-align: right; flex: 1; min-width: 200px;">
+                                        <p><strong>Training Provider:</strong><br>Camp Community College<br>EMS Education Program</p>
+                                    </div>
+                                </div>
+                                <div style="margin-top: 30px; font-size: 14px; color: #6b7280;">
+                                    <p><strong>Course Content:</strong> PHI Protection, Permitted Disclosures, Minimum Necessary Standards, Breach Notification, EMS-Specific Compliance Requirements</p>
+                                    <p><strong>Compliance:</strong> Meets HIPAA training requirements for healthcare workers per 45 CFR 164.530(b)</p>
+                                </div>
+                            </div>
+                            <div style="margin-top: 20px; font-size: 12px; color: #6b7280;">
+                                <p>Certificate ID: HIPAA-EMS-<span id="certId"></span></p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-box" style="margin: 20px 0;">
+                            <h4>📄 How to Print/Save Your Certificate:</h4>
+                            <ol style="text-align: left; margin: 10px 0;">
+                                <li><strong>Print to PDF:</strong>
+                                    <ul>
+                                        <li><strong>Windows:</strong> Press Ctrl+P → Select "Microsoft Print to PDF" as printer → Click Print → Choose save location</li>
+                                        <li><strong>Mac:</strong> Press Cmd+P → Click "PDF" dropdown → Select "Save as PDF" → Choose save location</li>
+                                        <li><strong>Mobile:</strong> Use your browser's share menu → Select "Print" → Choose "Save as PDF"</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Physical Print:</strong> Press Ctrl+P (Cmd+P on Mac) → Select your printer → Adjust settings to "Portrait" → Print</li>
+                                <li><strong>For LMS Submission:</strong> Save as PDF first, then upload the PDF file to your course assignment or email to your instructor</li>
+                            </ol>
+                            <p><strong>Tip:</strong> Before printing, make sure all certificate information is correct. You can regenerate the certificate with a corrected name if needed.</p>
+                        </div>
+                        
+                        <div style="margin: 20px 0;">
+                            <button class="btn btn-primary" onclick="window.print()" style="margin-right: 10px;">🖨️ Print Certificate</button>
+                            <button class="btn btn-secondary" onclick="regenerateCertificate()">✏️ Edit Name</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="failResult" style="display: none;">
+                    <h3>Additional Study Recommended</h3>
+                    <p>You scored below the passing threshold of 80%. Please review the training materials and retake the quiz.</p>
+                    
+                    <h4>Recommended Study Areas:</h4>
+                    <ul id="studyAreas"></ul>
+                    
+                    <button class="btn btn-primary" onclick="restartQuiz()">Retake Quiz</button>
+                </div>
+                
+                <h3>Additional HIPAA Resources</h3>
+                <div style="margin: 20px 0;">
+                    <a href="https://www.hhs.gov/hipaa/for-professionals/privacy/laws-regulations/index.html" target="_blank" class="resource-link">Complete HIPAA Privacy Rule</a>
+                    <a href="https://www.hipaajournal.com/hipaa-training-requirements/" target="_blank" class="resource-link">Ongoing Training Requirements</a>
+                    <a href="https://compliancy-group.com/hipaa-compliance-training-requirements-free/" target="_blank" class="resource-link">Free Compliance Resources</a>
+                </div>
+                
+                <div class="citation">
+                    <strong>Sources and Citations:</strong><br>
+                    • 45 CFR Parts 160, 164 (HIPAA Administrative Simplification Rules)<br>
+                    • U.S. Department of Health and Human Services HIPAA Training Materials<br>
+                    • Camp Community College EMS Program Handbook and Textbook Materials<br>
+                    • Advanced Emergency Care and Transportation of the Sick and Injured, 4th Edition<br>
+                    • Virginia Department of Health EMS HIPAA Guidelines<br>
+                    • HIPAA Journal Training Requirements (2025)<br>
+                    • Federal Register HIPAA Security Rule Updates (January 2025)<br>
+                    • National Emergency Medical Services Information System (NEMSIS) Standards<br>
+                    • JEMS Magazine HIPAA and EMS Guidance<br>
+                    • Multiple peer-reviewed HIPAA compliance training resources
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation -->
+        <div class="navigation">
+            <button class="btn btn-secondary" id="prevBtn" onclick="previousSlide()" disabled>Previous</button>
+            <span class="slide-counter" id="slideCounter">1 of 11</span>
+            <button class="btn btn-primary" id="nextBtn" onclick="nextSlide()">Next</button>
+        </div>
+    </div>
+    
+    <script>
+        let currentSlide = 1;
+        let totalSlides = 11;
+        let currentQuestion = 1;
+        let totalQuestions = 10;
+        let quizAnswers = {};
+        let quizStarted = false;
+        
+        // Correct answers
+        const correctAnswers = {
+            q1: 'b', // Patient's blood pressure reading
+            q2: 'c', // Marketing pharmaceutical products
+            q3: 'b', // Only share minimum necessary
+            q4: 'c', // Posting patient photo on social media
+            q5: 'c', // Report immediately to privacy officer
+            q6: 'd', // All of the above
+            q7: 'b', // Only when required by law or to prevent harm
+            q8: 'c', // Administrative, physical, and technical safeguards
+            q9: 'c', // As soon as reasonably practicable
+            q10: 'd' // $71,162
+        };
+        
+        function updateProgress() {
+            const progress = (currentSlide / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+        
+        function updateSlideCounter() {
+            if (currentSlide <= 10) {
+                document.getElementById('slideCounter').textContent = `${currentSlide} of ${totalSlides}`;
+            } else if (currentSlide === 11) {
+                document.getElementById('slideCounter').textContent = 'Quiz';
+            } else {
+                document.getElementById('slideCounter').textContent = 'Results';
+            }
+        }
+        
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            if (n <= 10) {
+                document.getElementById(`slide${n}`).classList.add('active');
+            } else if (n === 11) {
+                document.getElementById('quizSlide').classList.add('active');
+                if (!quizStarted) {
+                    quizStarted = true;
+                    showQuestion(1);
+                }
+            } else {
+                document.getElementById('resultsSlide').classList.add('active');
+            }
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = (n === 1);
+            if (n === 11) {
+                document.getElementById('nextBtn').style.display = 'none';
+            } else if (n === 12) {
+                document.getElementById('nextBtn').style.display = 'none';
+                document.getElementById('prevBtn').style.display = 'none';
+            } else {
+                document.getElementById('nextBtn').style.display = 'inline-block';
+                document.getElementById('prevBtn').style.display = 'inline-block';
+            }
+            
+            updateProgress();
+            updateSlideCounter();
+        }
+        
+        function nextSlide() {
+            if (currentSlide < totalSlides + 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+        
+        function previousSlide() {
+            if (currentSlide > 1) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+        
+        function showQuestion(n) {
+            const questions = document.querySelectorAll('.question');
+            questions.forEach(q => q.classList.remove('active'));
+            document.getElementById(`q${n}`).classList.add('active');
+            
+            document.getElementById('quizCounter').textContent = `Question ${n} of ${totalQuestions}`;
+            document.getElementById('prevQuizBtn').disabled = (n === 1);
+            
+            if (n === totalQuestions) {
+                document.getElementById('nextQuizBtn').style.display = 'none';
+                document.getElementById('submitQuizBtn').style.display = 'inline-block';
+            } else {
+                document.getElementById('nextQuizBtn').style.display = 'inline-block';
+                document.getElementById('submitQuizBtn').style.display = 'none';
+            }
+        }
+        
+        function nextQuestion() {
+            if (currentQuestion < totalQuestions) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            }
+        }
+        
+        function previousQuestion() {
+            if (currentQuestion > 1) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            }
+        }
+        
+        // Handle option selection
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.option')) {
+                const option = e.target.closest('.option');
+                const question = option.closest('.question');
+                const questionId = question.id;
+                
+                // Clear previous selections
+                question.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('selected');
+                    opt.querySelector('input').checked = false;
+                });
+                
+                // Mark this option as selected
+                option.classList.add('selected');
+                option.querySelector('input').checked = true;
+                
+                // Store the answer
+                quizAnswers[questionId] = option.dataset.value;
+            }
+        });
+        
+        function submitQuiz() {
+            let score = 0;
+            let totalQuestions = Object.keys(correctAnswers).length;
+            let incorrectAreas = [];
+            
+            // Calculate score and identify incorrect answers
+            for (let question in correctAnswers) {
+                if (quizAnswers[question] === correctAnswers[question]) {
+                    score++;
+                } else {
+                    // Add to study areas based on question topic
+                    switch(question) {
+                        case 'q1':
+                        case 'q3':
+                            incorrectAreas.push('Protected Health Information (PHI) identification');
+                            break;
+                        case 'q2':
+                        case 'q7':
+                            incorrectAreas.push('Permitted uses and disclosures');
+                            break;
+                        case 'q4':
+                            incorrectAreas.push('Social media and technology guidelines');
+                            break;
+                        case 'q5':
+                        case 'q10':
+                            incorrectAreas.push('Breach notification and penalties');
+                            break;
+                        case 'q6':
+                        case 'q8':
+                            incorrectAreas.push('HIPAA compliance requirements');
+                            break;
+                        case 'q9':
+                            incorrectAreas.push('Patient rights and notices');
+                            break;
+                    }
+                }
+                
+                // Show correct/incorrect on options
+                const questionElement = document.getElementById(question);
+                const options = questionElement.querySelectorAll('.option');
+                options.forEach(option => {
+                    if (option.dataset.value === correctAnswers[question]) {
+                        option.classList.add('correct');
+                    } else if (option.classList.contains('selected')) {
+                        option.classList.add('incorrect');
+                    }
+                });
+            }
+            
+            const percentage = Math.round((score / totalQuestions) * 100);
+            
+            // Show results
+            currentSlide = 12;
+            showSlide(currentSlide);
+            
+            document.getElementById('scoreDisplay').textContent = `${score}/${totalQuestions} (${percentage}%)`;
+            
+            if (percentage >= 80) {
+                document.getElementById('scoreDisplay').className = 'score excellent';
+                document.getElementById('scoreMessage').textContent = 'Excellent! You have demonstrated strong understanding of HIPAA requirements for EMS.';
+                document.getElementById('passResult').style.display = 'block';
+                document.getElementById('failResult').style.display = 'none';
+                
+                // Store score and date for certificate
+                window.quizScore = `${score}/${totalQuestions} (${percentage}%)`;
+                window.completionDate = new Date().toLocaleDateString();
+            } else {
+                document.getElementById('scoreDisplay').className = 'score needs-improvement';
+                document.getElementById('scoreMessage').textContent = 'Additional study recommended. Please review the materials and retake the quiz.';
+                document.getElementById('passResult').style.display = 'none';
+                document.getElementById('failResult').style.display = 'block';
+                
+                // Show study areas
+                const studyList = document.getElementById('studyAreas');
+                studyList.innerHTML = '';
+                [...new Set(incorrectAreas)].forEach(area => {
+                    const li = document.createElement('li');
+                    li.textContent = area;
+                    studyList.appendChild(li);
+                });
+            }
+        }
+        
+        function generateCertificate() {
+            const studentName = document.getElementById('studentName').value.trim();
+            if (!studentName) {
+                alert('Please enter your full name to generate the certificate.');
+                return;
+            }
+            
+            // Generate unique certificate ID
+            const certId = Date.now().toString().slice(-8) + Math.random().toString(36).substr(2, 4).toUpperCase();
+            
+            // Populate certificate
+            document.getElementById('certificateName').textContent = studentName;
+            document.getElementById('certScore').textContent = window.quizScore;
+            document.getElementById('certDate').textContent = window.completionDate;
+            document.getElementById('certId').textContent = certId;
+            
+            // Show certificate
+            document.getElementById('nameEntry').style.display = 'none';
+            document.getElementById('certificateDisplay').style.display = 'block';
+        }
+        
+        function regenerateCertificate() {
+            document.getElementById('nameEntry').style.display = 'block';
+            document.getElementById('certificateDisplay').style.display = 'none';
+            document.getElementById('studentName').focus();
+        }
+        
+        function restartQuiz() {
+            currentSlide = 11;
+            currentQuestion = 1;
+            quizAnswers = {};
+            
+            // Reset all options
+            document.querySelectorAll('.option').forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+                option.querySelector('input').checked = false;
+            });
+            
+            showSlide(currentSlide);
+            showQuestion(1);
+        }
+        
+        // Initialize
+        showSlide(1);
+    </script>
+</body>
+</html>
+                    
